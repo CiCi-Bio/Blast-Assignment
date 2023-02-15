@@ -1,0 +1,10 @@
+(blast) Candices-MacBook-Air:Bioinformatics_wk5 candicechuraman$ makeblastdb -in /Users/candicechuraman/Desktop/Bioinformatics_wk5/mystery_transcripts.fasta -dbtype nucl -out mystery_transcript_rna
+(blast) Candices-MacBook-Air:Bioinformatics_wk5 candicechuraman$ makeblastdb -in /Users/candicechuraman/Desktop/Bioinformatics_wk5/mystery_proteins.fasta -dbtype prot -out mystery_protein_unknown
+blastn -query /Users/candicechuraman/Desktop/Bioinformatics_wk5/mystery_nucleotide_query.fasta -task megablast -db mystery_transcript_rna -out blast_transcript_unknown.txt -evalue 1e-3 -max_hsps 5 -outfmt 7
+Three hits were found for the mystery transcript query file and T010027234997 was the most similar based on percent identity of 91.965%. However, T010003453160 and T010027234995 were also similar having identities of both 91.351%. 
+(blast) Candices-MacBook-Air:Bioinformatics_wk5 candicechuraman$ awk '$3 >90 {print $2,$3}' /Users/candicechuraman/Desktop/Bioinformatics_wk5/blast_transcript_unknown.txt>> most_similar.txt 
+(blast) Candices-MacBook-Air:Bioinformatics_wk5 candicechuraman$ blastp -query /Users/candicechuraman/Desktop/Bioinformatics_wk5/mystery_protein_query.fasta -task blastp-short -db mystery_protein_unknown -out blast_protein_unknown.txt -evalue 1e5 -max_hsps 15 -outfmt 7
+P010027090798, P010027090796, P010027090796 and P010027090796 all had e-values of 0 which indicates an exact match. 
+The species of the mystery_transcripts.fasta file is Coffea arabica
+Species of the mystery query Gardenia jasminoides
+The gene of the mystery query KM371239
